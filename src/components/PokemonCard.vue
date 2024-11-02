@@ -21,26 +21,25 @@ export default {
     
 
     computed: {
-        imageUrl() {
+        imageUrl() { //Función para traer cada imagen de cada pokemón
             return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${this.id}.png`;
         },
-        formattedId() {
-            return this.id.toString().padStart(2, '0'); // Agrega ceros a la izquierda
+        formattedId() {// Función que Agrega ceros a la izquierda
+            return this.id.toString().padStart(2, '0'); 
         },
-        nameToUpperCase() {
+        nameToUpperCase() { //Función que Capitaliza la primera letra del nombre
             return this.name.charAt(0).toUpperCase() + this.name.slice(1);
 
         }
     },
     methods: {
-        typeColor(type) {
+        typeColor(type) { //Función que me define los colores de los tipos
             const colors = {
                 grass: 'bg-green-200 text-green-700',
                 poison: 'bg-purple-200 text-purple-700',
                 fire: 'bg-red-200 text-red-700',
                 water: 'bg-blue-200 text-blue-700',
                 electric: 'bg-yellow-200 text-yellow-700',
-
                 flying: 'bg-flying-200 text-flying-700',
                 bug: 'bg-bug-200 text-bug-700',
                 normal: 'bg-normal-200 text-normal-700',
@@ -58,39 +57,14 @@ export default {
             };
             return colors[type] || colors.default;
         },
-        formatTypeName(type) {
-            // Capitaliza el nombre del tipo
+        formatTypeName(type) { //Función que Capitaliza el nombre del Pokemón
             return type.charAt(0).toUpperCase() + type.slice(1);
         },
-        toggleModal() {
+        toggleModal() { //Función que cambia el estado del modal
             this.isModalVisible = !this.isModalVisible;
         }
     }
 };
 </script>
 
-<style scoped>
-.pokemon-card {
-    @apply bg-gray-200 rounded-lg shadow-md p-4 flex flex-col items-center w-52;
-}
 
-.pokemon-image {
-    @apply w-32 h-32;
-}
-
-.pokemon-id {
-    @apply text-sm text-gray-500 mt-2 font-semibold;
-}
-
-.pokemon-name {
-    @apply text-xl font-bold mt-2 text-gray-800;
-}
-
-.pokemon-types {
-    @apply flex space-x-1 mt-3;
-}
-
-.pokemon-type {
-    @apply px-3 py-1 rounded-full text-sm font-semibold capitalize;
-}
-</style>

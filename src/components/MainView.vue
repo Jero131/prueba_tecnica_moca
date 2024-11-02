@@ -10,7 +10,7 @@
                 @click="openModal(pokemon)" />
         </div>
 
-        <!-- Modal, visible cuando `isModalVisible` es true -->
+        
         <DetailsModal 
             v-if="isModalVisible" 
             :pokemon="selectedPokemon" 
@@ -89,12 +89,3 @@ export default {
 };
 </script>
 
-<style scoped>
-.main-view {
-    @apply p-6 min-h-screen flex justify-center overflow-auto;
-}
-
-.pokemon-grid {
-    @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-screen-lg;
-}
-</style>

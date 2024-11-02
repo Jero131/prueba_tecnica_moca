@@ -1,15 +1,28 @@
 <template>
     <div class="modal-overlay" @click.self="$emit('close')">
-        <div class="modal-content">
+        <div class="modal-content flex flex-wrap p-6 lg:p-8">
             <button @click="$emit('close')" class="close-button">Cerrar</button>
-            <h3 class="pokemon-name">{{ pokemon.name }}</h3>
-            <img :src="pokemon.imageUrl" :alt="pokemon.name" class="pokemon-image" />
-            <p>Id: {{ pokemon.id }}</p>
-            <p>Tipos:</p>
-            <div class="pokemon-types">
-                <span v-for="type in pokemon.types" :key="type.type.name" :class="['pokemon-type', typeColor(type.type.name)]">
-                    {{ formatTypeName(type.type.name) }}
-                </span>
+            <div class="modal-body flex flex-wrap md:flex-nowrap items-center">
+                <!-- Imagen del Pokémon -->
+                <img :src="imageUrl" :alt="pokemon.name" class="pokemon-image" />
+
+                <!-- Contenedor gris con información -->
+                <div class="container bg-gray-200 p-6 lg:p-8 rounded-2xl ml-4 flex flex-col justify-between">
+                    <p class="pokemon-id">N.º {{ formattedId }}</p>
+                    <h3 class="pokemon-name">{{ nameToUpperCase }}</h3>
+                    <p>Altura: {{ pokemon.height / 10 }} m</p>
+                    <p>Peso: {{ pokemon.weight / 10 }} kg</p>
+                    <p>Habilidad: {{ pokemon.abilities[0]?.ability.name }}</p>
+                    
+                    <!-- Tipos del Pokémon -->
+                    <div class="pokemon-types mt-4">
+                        <p>Tipo:</p>
+                        <span v-for="type in pokemon.types" :key="type.type.name"
+                            :class="['pokemon-type', typeColor(type.type.name)]">
+                            {{ formatTypeName(type.type.name) }}
+                        </span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -23,6 +36,17 @@ export default {
             required: true
         }
     },
+    computed: {
+        imageUrl() {
+            return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${this.pokemon.id}.png`;
+        },
+        formattedId() {
+            return this.pokemon.id.toString().padStart(2, '0');
+        },
+        nameToUpperCase() {
+            return this.pokemon.name.charAt(0).toUpperCase() + this.pokemon.name.slice(1);
+        }
+    },
     methods: {
         typeColor(type) {
             const colors = {
@@ -31,9 +55,22 @@ export default {
                 fire: 'bg-red-200 text-red-700',
                 water: 'bg-blue-200 text-blue-700',
                 electric: 'bg-yellow-200 text-yellow-700',
-                // Agrega más tipos si es necesario...
+                flying: 'bg-flying-200 text-flying-700',
+                bug: 'bg-bug-200 text-bug-700',
+                normal: 'bg-normal-200 text-normal-700',
+                ground: 'bg-ground-200 text-ground-700',
+                psychic: 'bg-psychic-200 text-psychic-700',
+                ice: 'bg-ice-200 text-ice-700',
+                fighting: 'bg-fighting-200 text-fighting-700',
+                rock: 'bg-rock-200 text-rock-700',
+                dragon: 'bg-dragon-200 text-dragon-700',
+                ghost: 'bg-ghost-200 text-ghost-700',
+                dark: 'bg-dark-200 text-dark-700',
+                steel: 'bg-steel-200 text-steel-700',
+                fairy: 'bg-fairy-200 text-fairy-700',
+                default: 'bg-gray-200 text-gray-700'
             };
-            return colors[type] || 'bg-gray-200 text-gray-700'; // color por defecto
+            return colors[type] || 'bg-gray-200 text-gray-700';
         },
         formatTypeName(type) {
             return type.charAt(0).toUpperCase() + type.slice(1);
@@ -48,7 +85,7 @@ export default {
 }
 
 .modal-content {
-    @apply bg-white p-6 rounded-lg shadow-lg max-w-sm;
+    @apply bg-white rounded-lg relative flex flex-col w-full max-w-[95vw] md:max-w-[80vw] lg:max-w-[70vw] xl:max-w-[60vw];
 }
 
 .close-button {
@@ -56,15 +93,23 @@ export default {
 }
 
 .pokemon-image {
-    @apply w-32 h-32;
+    @apply w-full h-auto max-w-[12rem] md:max-w-[14rem] lg:max-w-[16rem] mb-4 md:mb-0;
+}
+
+.container {
+    @apply flex-1 w-full md:w-auto flex flex-col justify-between mt-4 md:mt-0;
+}
+
+.pokemon-id {
+    @apply text-gray-500;
 }
 
 .pokemon-name {
-    @apply text-xl font-bold mt-2 text-gray-800;
+    @apply text-xl font-bold text-gray-800;
 }
 
 .pokemon-types {
-    @apply flex space-x-1 mt-3;
+    @apply flex space-x-1 mt-2;
 }
 
 .pokemon-type {

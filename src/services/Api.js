@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const api_url = 'https://pokeapi.co/api/v2/';
 
-const api = (url = api_url) => {
+const api = (url = api_url) => { // Url base de la api
   return axios.create({
     baseURL: url,
   });
@@ -11,18 +11,14 @@ const api = (url = api_url) => {
 
 export default {
 
-  getPokemonByID(pokemonID) {
+  getPokemonByID(pokemonID) {  //Buscar pokemón por ID
     const result = api().get(`pokemon/${pokemonID}/`);
     return result;
   },
 
-  getTotalOfPokemons() {
+  getTotalOfPokemons() {  //
     const result = api().get('pokemon?limit=-1&offset=0');
     return result;
   },
 
-  getTypeRelations(type) {
-    const result = api().get(`type/${type}`);
-    return result;
-  },
 };
