@@ -5,6 +5,6 @@
 
 
 header {
-        @apply flex md:justify-between py-4;
-        @apply bg-mainRed;
-    }
+    @apply flex md:justify-between py-3;
+    @apply bg-mainRed;
+}
