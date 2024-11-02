@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+header {
+        @apply flex md:justify-between py-4;
+        @apply bg-mainRed;
+    }
