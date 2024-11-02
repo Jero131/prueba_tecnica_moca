@@ -11,7 +11,7 @@
         </div>
 
         <!-- Modal, visible cuando `isModalVisible` es true -->
-        <TheModal 
+        <DetailsModal 
             v-if="isModalVisible" 
             :pokemon="selectedPokemon" 
             @close="toggleModal" 
@@ -22,12 +22,12 @@
 <script>
 import api from '@/services/Api';
 import PokemonCard from '@/components/PokemonCard.vue';
-import TheModal from './modals/TheModal.vue';
+import DetailsModal from './modals/DetailsModal.vue';
 
 export default {
     components: {
         PokemonCard,
-        TheModal,
+        DetailsModal,
     },
     data() {
         return {
