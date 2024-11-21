@@ -34,7 +34,7 @@ export default {
     },
     methods: {
         typeColor(type) { //Función que me define los colores de los tipos
-            const colors = {
+            const colores = {
                 grass: 'bg-green-200 text-green-700',
                 poison: 'bg-purple-200 text-purple-700',
                 fire: 'bg-red-200 text-red-700',
@@ -55,7 +55,7 @@ export default {
                 fairy: 'bg-fairy-200 text-fairy-700',
                 default: 'bg-gray-200 text-gray-700'
             };
-            return colors[type] || colors.default;
+            return colores[type] || colores.default;
         },
         formatTypeName(type) { //Función que Capitaliza el nombre del Pokemón
             return type.charAt(0).toUpperCase() + type.slice(1);

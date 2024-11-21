@@ -12,13 +12,13 @@ const api = (url = api_url) => { // Url base de la api
 export default {
 
   getPokemonByID(pokemonID) {  //Buscar pokemón por ID
-    const result = api().get(`pokemon/${pokemonID}/`);
-    return result;
+    const resultado = api().get(`pokemon/${pokemonID}/`);
+    return resultado;
   },
 
   getTotalOfPokemons() {  //
-    const result = api().get('pokemon?limit=-1&offset=0');
-    return result;
+    const resultado = api().get('pokemon?limit=-1&offset=0');
+    return resultado;
   },
 
 };
